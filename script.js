@@ -46,7 +46,6 @@ buttons.forEach((button) => {
 
 });
 
-
 /* COPY WEBSITE URL */
 
 const siteUrl = document.querySelector(".site-url");
@@ -79,26 +78,8 @@ if (siteUrl) {
 
 }
 
-
 /* VISITOR */
 
 fetch("/visitor")
     .then(() => console.log("Visitor notification sent"))
     .catch(() => console.log("Visitor notification unavailable"));
-    function comingSoon(event) {
-    event.preventDefault();
-
-    const button = event.currentTarget;
-    const text = button.querySelector(".text");
-
-    const oldText = text.innerHTML;
-
-    text.innerHTML = `
-        <small>EXCLUSIVE</small>
-        COMING SOON
-    `;
-
-    setTimeout(() => {
-        text.innerHTML = oldText;
-    }, 1800);
-}
