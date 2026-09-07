@@ -1,85 +1,101 @@
-console.log("RED ASCEND loaded");
+/* =========================================================
+   RED ASCEND — INTERACTIONS
+   ========================================================= */
 
-const buttons = document.querySelectorAll(".links a");
+const buttons = document.querySelectorAll(
+    ".links > a, .special-button, .project-card"
+);
+
+
+/* =========================================================
+   CURSOR LIGHT + PREMIUM TILT
+   ========================================================= */
 
 buttons.forEach((button) => {
 
-    button.addEventListener("mousemove", (e) => {
+    button.addEventListener("mousemove", (event) => {
 
         const rect = button.getBoundingClientRect();
 
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
 
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        const rotateX =
-            ((centerY - y) / centerY) * 3;
-
-        const rotateY =
-            ((x - centerX) / centerX) * 3;
-
-        button.style.transform = `
-            perspective(900px)
-            translateY(-6px)
-            rotateX(${rotateX}deg)
-            rotateY(${rotateY}deg)
-            scale(1.015)
-        `;
+        const rotateY = ((x - centerX) / centerX) * 2.2;
+        const rotateX = ((centerY - y) / centerY) * 2.2;
 
         button.style.setProperty("--mouse-x", `${x}px`);
         button.style.setProperty("--mouse-y", `${y}px`);
+
+        /* OUR PROJECT a sa propre animation */
+        if (button.classList.contains("project-card")) {
+
+            if (button.classList.contains("open")) {
+                button.style.transform = `
+                    translateY(-3px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                `;
+            } else {
+                button.style.transform = `
+                    translateY(-5px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                `;
+            }
+
+            return;
+        }
+
+        button.style.transform = `
+            translateY(-5px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+        `;
     });
+
 
     button.addEventListener("mouseleave", () => {
 
-        button.style.transform = `
-            perspective(900px)
-            translateY(0)
-            rotateX(0deg)
-            rotateY(0deg)
-            scale(1)
-        `;
+        button.style.removeProperty("--mouse-x");
+        button.style.removeProperty("--mouse-y");
 
-    });
+        if (button.classList.contains("project-card")) {
 
-});
+            if (button.classList.contains("open")) {
+                button.style.transform = "translateY(-3px)";
+            } else {
+                button.style.transform = "";
+            }
 
-/* COPY WEBSITE URL */
-
-const siteUrl = document.querySelector(".site-url");
-
-if (siteUrl) {
-
-    siteUrl.addEventListener("click", async () => {
-
-        try {
-
-            await navigator.clipboard.writeText(
-                siteUrl.textContent
-            );
-
-            const oldText = siteUrl.textContent;
-
-            siteUrl.textContent = "COPIED";
-
-            setTimeout(() => {
-                siteUrl.textContent = oldText;
-            }, 1200);
-
-        } catch (error) {
-
-            console.log("Copy unavailable");
-
+            return;
         }
 
+        button.style.transform = "";
     });
+});
 
+
+/* =========================================================
+   OUR PROJECT — OPEN / CLOSE
+   ========================================================= */
+
+const projectCard = document.getElementById("projectCard");
+
+if (projectCard) {
+
+    projectCard.addEventListener("click", function () {
+
+        this.classList.toggle("open");
+
+        /*
+         * On remet l'inclinaison à zéro au clic
+         * pour que l'ouverture reste propre.
+         */
+        this.style.transform = this.classList.contains("open")
+            ? "translateY(-3px)"
+            : "";
+    });
 }
-
-/* VISITOR */
-
-fetch("/visitor")
-    .then(() => console.log("Visitor notification sent"))
-    .catch(() => console.log("Visitor notification unavailable"));

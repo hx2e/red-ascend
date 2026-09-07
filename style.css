@@ -4,97 +4,144 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     min-height: 100vh;
-    font-family: Arial, sans-serif;
-    color: #aaa;
-    background: #020202;
+    background: #050505;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
     overflow-x: hidden;
 }
 
-/* BACKGROUND */
+
+/* =========================
+   BACKGROUND
+========================= */
 
 .background {
     position: fixed;
     inset: 0;
-    z-index: -1;
+    z-index: -2;
 
     background:
         radial-gradient(
-            circle at 50% 15%,
-            rgba(150, 0, 0, .45),
-            transparent 42%
+            circle at 50% 10%,
+            rgba(150, 0, 25, 0.30),
+            transparent 38%
         ),
         radial-gradient(
-            circle at 5% 80%,
-            rgba(100, 0, 0, .22),
+            circle at 8% 35%,
+            rgba(100, 0, 25, 0.20),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 92% 30%,
+            rgba(120, 0, 25, 0.18),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 25% 90%,
+            rgba(110, 0, 30, 0.20),
             transparent 35%
         ),
         radial-gradient(
-            circle at 95% 70%,
-            rgba(70, 0, 100, .10),
+            circle at 80% 85%,
+            rgba(90, 0, 25, 0.18),
             transparent 35%
         ),
-        #020202;
+        #050505;
+}
+.background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.018) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.018) 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    mask-image: linear-gradient(
+        to bottom,
+        black,
+        transparent 85%
+    );
 }
 
-/* PROFILE */
+
+/* =========================
+   PROFILE
+========================= */
 
 .profile {
-    width: 500px;
-    max-width: calc(100% - 30px);
-
-    margin: auto;
-    padding: 45px 0;
-
+    width: min(500px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 55px 0 35px;
     text-align: center;
 }
 
-/* BADGE */
+
+/* =========================
+   BADGE
+========================= */
 
 .badge {
     display: inline-flex;
     align-items: center;
     gap: 8px;
 
-    padding: 10px 17px;
+    padding: 7px 13px;
 
-    border: 1px solid rgba(180, 0, 0, .5);
-    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 30px;
 
-    background: rgba(30, 0, 0, .7);
+    background: rgba(255, 255, 255, 0.035);
 
-    backdrop-filter: blur(15px);
+    color: #bdbdbd;
 
-    color: #aaa;
-
-    font-size: 10px;
-    font-weight: bold;
+    font-size: 9px;
+    font-weight: 700;
     letter-spacing: 2px;
 
+    backdrop-filter: blur(12px);
+
     box-shadow:
-        0 0 30px rgba(150, 0, 0, .2);
+        0 0 25px rgba(255, 0, 40, 0.05);
 }
 
 .badge span {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
 
     border-radius: 50%;
 
-    background: #c00000;
+    background: #ff1d3d;
 
     box-shadow:
-        0 0 14px #c00000;
+        0 0 10px rgba(255, 0, 40, 0.9);
 }
 
-/* AVATAR */
+
+/* =========================
+   AVATAR
+========================= */
 
 .avatar {
-    width: 110px;
-    height: 110px;
+    width: 82px;
+    height: 82px;
 
-    margin: 30px auto 18px;
+    margin: 23px auto 17px;
 
     display: flex;
     align-items: center;
@@ -103,301 +150,203 @@ body {
     border-radius: 50%;
 
     background:
-        radial-gradient(
-            circle,
-            #4b0000,
-            #080808 70%
+        linear-gradient(
+            145deg,
+            #1b1b1b,
+            #070707
         );
 
-    border: 2px solid #850000;
+    border: 1px solid rgba(255, 255, 255, 0.14);
 
-    color: #d00000;
+    color: #eeeeee;
 
-    font-size: 29px;
-    font-weight: bold;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 2px;
 
     box-shadow:
-        0 0 40px rgba(170, 0, 0, .35),
-        inset 0 0 30px rgba(150, 0, 0, .2);
+        0 0 35px rgba(255, 0, 35, 0.10),
+        inset 0 0 20px rgba(255, 255, 255, 0.025);
 }
 
-/* TITLE */
+
+/* =========================
+   TITLE
+========================= */
 
 h1 {
-    color: #e5e5e5;
-
-    font-size: 36px;
-
-    text-shadow:
-        0 0 30px rgba(180, 0, 0, .4);
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
 .member {
-    margin-top: 9px;
+    margin-top: 7px;
 
-    color: #888;
+    color: #777;
 
-    font-size: 11px;
-    font-weight: bold;
+    font-size: 9px;
+    font-weight: 700;
     letter-spacing: 2px;
 }
 
-/* LINE */
-
 .line {
-    width: 110px;
-    height: 2px;
+    width: 45px;
+    height: 1px;
 
-    margin: 22px auto;
+    margin: 19px auto 13px;
 
-    background: #850000;
-
-    box-shadow:
-        0 0 20px rgba(180, 0, 0, .55);
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #a00020,
+        transparent
+    );
 }
-
-/* URL */
 
 .site-url {
-    color: #999;
-
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 1px;
-
-    cursor: pointer;
-
-    transition: .3s;
+    color: #666;
+    font-size: 9px;
+    letter-spacing: 0.5px;
 }
-
-.site-url:hover {
-    color: #d00000;
-}
-
-/* DESCRIPTION */
 
 .description {
-    margin-top: 15px;
-    margin-bottom: 30px;
+    margin-top: 12px;
 
-    color: #888;
+    color: #a5a5a5;
 
-    font-size: 11px;
-    font-weight: bold;
+    font-size: 9px;
+    font-weight: 700;
     letter-spacing: 3px;
 }
 
-/* BUTTON CONTAINER */
+
+/* =========================
+   LINKS
+========================= */
 
 .links {
     display: flex;
     flex-direction: column;
     gap: 14px;
+
+    margin-top: 27px;
 }
 
-/* BASE BUTTON */
 
-.links a,
-.locked-button {
+/* =========================
+   ALL BUTTONS
+========================= */
+
+.links > a,
+.special-button {
     position: relative;
 
     width: 100%;
-    min-height: 78px;
+    min-height: 67px;
 
     display: flex;
     align-items: center;
 
-    padding: 14px 17px;
+    padding: 12px 16px;
 
-    border-radius: 18px;
+    border-radius: 15px;
 
     text-decoration: none;
 
     overflow: hidden;
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    cursor: pointer;
+
+    transform-style: preserve-3d;
 
     transition:
-        transform .25s ease,
-        border-color .3s ease,
-        box-shadow .3s ease;
+        transform 0.25s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
 }
 
-/* TIKTOK 1 */
 
-.links a:nth-child(1) {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(65, 0, 0, .50),
-            rgba(12, 12, 12, .84)
-        );
+/* mouse glow */
 
-    border: 1px solid rgba(175, 0, 0, .48);
-
-    box-shadow:
-        0 12px 35px rgba(0, 0, 0, .6),
-        0 0 24px rgba(150, 0, 0, .10),
-        inset 0 1px rgba(220, 0, 0, .15);
-}
-
-.links a:nth-child(1):hover {
-    border-color: rgba(215, 0, 0, .68);
-
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, .7),
-        0 0 30px rgba(180, 0, 0, .22),
-        0 0 60px rgba(130, 0, 0, .10);
-}
-
-/* TIKTOK 2 */
-
-.links a:nth-child(2) {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(48, 0, 8, .50),
-            rgba(12, 12, 12, .84)
-        );
-
-    border: 1px solid rgba(175, 0, 35, .48);
-
-    box-shadow:
-        0 12px 35px rgba(0, 0, 0, .6),
-        0 0 24px rgba(150, 0, 30, .10),
-        inset 0 1px rgba(220, 0, 45, .15);
-}
-
-.links a:nth-child(2):hover {
-    border-color: rgba(215, 0, 45, .68);
-
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, .7),
-        0 0 30px rgba(180, 0, 35, .22),
-        0 0 60px rgba(130, 0, 25, .10);
-}
-
-/* DISCORD */
-
-.links a:nth-child(3) {
-    background:
-        linear-gradient(
-            135deg,
-            rgba(45, 15, 65, .42),
-            rgba(9, 8, 14, .90),
-            rgba(30, 0, 20, .35)
-        );
-
-    border: 1px solid rgba(125, 85, 170, .40);
-
-    box-shadow:
-        0 12px 35px rgba(0, 0, 0, .6),
-        0 0 25px rgba(90, 40, 130, .10),
-        inset 0 1px rgba(170, 120, 220, .12);
-}
-
-.links a:nth-child(3):hover {
-    border-color: rgba(165, 110, 220, .65);
-
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, .7),
-        0 0 30px rgba(130, 70, 190, .22),
-        0 0 65px rgba(90, 40, 150, .12);
-}
-
-/* REFLECTION */
-
-.links a::before {
+.links > a::before,
+.special-button::before {
     content: "";
 
     position: absolute;
 
-    top: -150%;
-    left: -80%;
-
-    width: 45%;
-    height: 400%;
-
-    transform: rotate(25deg);
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, .08),
-            transparent
-        );
-
-    filter: blur(5px);
-
-    opacity: 0;
-
-    transition:
-        left .8s cubic-bezier(.16,1,.3,1),
-        opacity .3s ease;
-
-    pointer-events: none;
-}
-
-.links a:hover::before {
-    left: 135%;
-    opacity: 1;
-}
-
-/* MOUSE LIGHT */
-
-.links a::after {
-    content: "";
-
-    position: absolute;
-
-    width: 230px;
-    height: 230px;
+    width: 190px;
+    height: 190px;
 
     left: var(--mouse-x, 50%);
     top: var(--mouse-y, 50%);
 
     transform: translate(-50%, -50%);
 
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(190, 0, 0, .22),
-            transparent 70%
-        );
-
-    filter: blur(12px);
+    background: radial-gradient(
+        circle,
+        rgba(255, 0, 45, 0.16),
+        transparent 65%
+    );
 
     opacity: 0;
 
-    transition: opacity .25s ease;
+    transition: opacity 0.3s ease;
 
     pointer-events: none;
 }
 
-/* DISCORD LIGHT */
-
-.links a:nth-child(3)::after {
-    background:
-        radial-gradient(
-            circle,
-            rgba(135, 75, 200, .22),
-            transparent 70%
-        );
-}
-
-.links a:hover::after {
+.links > a:hover::before,
+.special-button:hover::before {
     opacity: 1;
 }
 
-/* ICON */
+
+/* reflection */
+
+.links > a::after,
+.special-button::after {
+    content: "";
+
+    position: absolute;
+
+    top: -100%;
+    left: -70%;
+
+    width: 45%;
+    height: 300%;
+
+    transform: rotate(25deg);
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.10),
+        transparent
+    );
+
+    transition: left 0.7s ease;
+
+    pointer-events: none;
+}
+
+.links > a:hover::after,
+.special-button:hover::after {
+    left: 130%;
+}
+
+
+/* =========================
+   ICON
+========================= */
 
 .icon {
-    width: 45px;
-    height: 45px;
+    position: relative;
+    z-index: 2;
+
+    width: 39px;
+    height: 39px;
 
     flex-shrink: 0;
 
@@ -405,51 +354,33 @@ h1 {
     align-items: center;
     justify-content: center;
 
-    border-radius: 13px;
+    border-radius: 11px;
 
-    background: rgba(65, 0, 0, .55);
+    font-size: 17px;
 
-    border: 1px solid rgba(170, 0, 0, .35);
-
-    color: #c00000;
-
-    font-size: 18px;
-
-    box-shadow:
-        0 0 20px rgba(150, 0, 0, .2);
-
-    transition: .3s;
+    color: #fff;
 }
 
-/* DISCORD ICON */
 
-.links a:nth-child(3) .icon {
-    background: rgba(55, 30, 75, .55);
-
-    border-color: rgba(140, 95, 185, .35);
-
-    color: #a980d0;
-
-    box-shadow:
-        0 0 20px rgba(110, 60, 160, .18);
-}
-
-/* TEXT */
+/* =========================
+   TEXT
+========================= */
 
 .text {
     position: relative;
-    z-index: 3;
+    z-index: 2;
 
     flex: 1;
 
-    margin-left: 13px;
+    margin-left: 12px;
 
     text-align: left;
 
-    color: #d0d0d0;
+    color: #eeeeee;
 
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
 }
 
 .text small {
@@ -457,75 +388,157 @@ h1 {
 
     margin-bottom: 4px;
 
-    color: #a00000;
+    color: #8f8f8f;
 
-    font-size: 10px;
+    font-size: 7px;
+    font-weight: 700;
 
-    letter-spacing: 2px;
+    letter-spacing: 1.7px;
 }
 
-/* DISCORD LABEL */
 
-.links a:nth-child(3) .text small {
-    color: #9d76c0;
-}
+/* =========================
+   ARROW
+========================= */
 
-/* ARROW */
-
-.links b {
+.links > a b,
+.special-button b {
     position: relative;
-    z-index: 3;
+    z-index: 2;
 
-    color: #888;
+    color: #cfcfcf;
 
-    font-size: 18px;
+    font-size: 17px;
+    font-weight: 400;
 
-    transition: .3s;
+    transition:
+        transform 0.25s ease,
+        color 0.25s ease;
 }
 
-.links a:hover b {
-    color: #e00000;
-
-    transform:
-        translateX(4px)
-        scale(1.1);
+.links > a:hover b,
+.special-button:hover b {
+    transform: translate(3px, -3px);
+    color: white;
 }
 
-.links a:nth-child(3):hover b {
-    color: #b68bdd;
+
+/* =========================
+   TIKTOK 1
+========================= */
+
+.tiktok-one {
+    border: 1px solid rgba(255, 30, 70, 0.25);
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(120, 0, 25, 0.42),
+            rgba(25, 5, 10, 0.92)
+        );
+
+    box-shadow:
+        0 10px 35px rgba(80, 0, 20, 0.12);
 }
 
-/* COMING SOON */
+.tiktok-one .icon {
+    background: rgba(255, 0, 50, 0.12);
+    color: #ff3154;
+}
+
+.tiktok-one:hover {
+    border-color: rgba(255, 35, 70, 0.55);
+
+    box-shadow:
+        0 14px 40px rgba(120, 0, 30, 0.20);
+}
+
+
+/* =========================
+   TIKTOK 2
+========================= */
+
+.tiktok-two {
+    border: 1px solid rgba(255, 80, 100, 0.18);
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(70, 0, 20, 0.35),
+            rgba(15, 15, 15, 0.95)
+        );
+}
+
+.tiktok-two .icon {
+    background: rgba(255, 255, 255, 0.045);
+    color: #ddd;
+}
+
+.tiktok-two:hover {
+    border-color: rgba(255, 70, 90, 0.45);
+
+    box-shadow:
+        0 14px 40px rgba(100, 0, 25, 0.17);
+}
+
+
+/* =========================
+   DISCORD
+========================= */
+
+.discord-button {
+    border: 1px solid rgba(120, 90, 255, 0.25);
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(50, 30, 100, 0.38),
+            rgba(15, 12, 25, 0.94)
+        );
+
+    box-shadow:
+        0 10px 35px rgba(50, 20, 120, 0.10);
+}
+
+.discord-button .icon {
+    background: rgba(120, 90, 255, 0.11);
+    color: #a99aff;
+}
+
+.discord-button:hover {
+    border-color: rgba(140, 110, 255, 0.55);
+
+    box-shadow:
+        0 14px 40px rgba(70, 30, 150, 0.20);
+}
+
+
+/* =========================
+   LOCKED BUTTONS
+========================= */
 
 .locked-button {
     cursor: not-allowed;
 
-    border: 1px solid rgba(100, 100, 100, .22);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 
     background:
         linear-gradient(
-            135deg,
-            rgba(25, 25, 25, .85),
-            rgba(5, 5, 5, .96)
+            110deg,
+            rgba(22, 22, 22, 0.95),
+            rgba(8, 8, 8, 0.98)
         );
 
-    box-shadow:
-        0 12px 35px rgba(0, 0, 0, .65),
-        inset 0 1px rgba(255, 255, 255, .04);
+    opacity: 0.92;
 }
 
 .locked-button .icon {
-    color: #666;
-
-    background: rgba(30, 30, 30, .7);
-
-    border-color: rgba(120, 120, 120, .18);
-
-    box-shadow: none;
+    background: rgba(255, 255, 255, 0.035);
+    color: #bdbdbd;
 }
 
 .locked-button .text {
-    color: #888;
+    color: #d0d0d0;
 }
 
 .locked-button .text small {
@@ -533,86 +546,647 @@ h1 {
 }
 
 .locked-button b {
-    color: #555;
+    color: #888;
 }
 
+
+/* important : pas de faux hover */
 .locked-button:hover {
     transform: none !important;
 
-    border-color: rgba(120, 120, 120, .25);
+    border-color: rgba(255, 255, 255, 0.08);
 
-    box-shadow:
-        0 12px 35px rgba(0, 0, 0, .65),
-        inset 0 1px rgba(255, 255, 255, .04);
+    box-shadow: none;
 }
 
-/* QUOTE */
+.locked-button:hover::before {
+    opacity: 0;
+}
+
+.locked-button:hover::after {
+    left: -70%;
+}
+
+.locked-button:hover b {
+    transform: none;
+    color: #888;
+}
+
+
+/* =========================
+   ROBLOX
+========================= */
+
+.roblox-button {
+    background:
+        linear-gradient(
+            110deg,
+            rgba(18, 18, 18, 0.96),
+            rgba(7, 7, 7, 0.98)
+        );
+}
+
+
+/* =========================
+   PROJECT CARD
+========================= */
+
+.project-card {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 118px;
+
+    padding: 17px;
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    color: #111;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4f4f4 0%,
+            #d8d8d8 38%,
+            #eeeeee 65%,
+            #c5c5c5 100%
+        );
+
+    border: 1px solid rgba(255,255,255,0.8);
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+
+    transition:
+        min-height 0.5s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+    box-shadow:
+        0 20px 55px rgba(0,0,0,0.45),
+        0 0 30px rgba(255,255,255,0.08);
+}
+
+
+/* project top */
+
+.project-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: #666;
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.project-status {
+    color: #888;
+}
+
+
+/* project content */
+
+.project-content {
+    display: flex;
+    align-items: center;
+
+    margin-top: 17px;
+
+    text-align: left;
+}
+
+.project-mark {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 11px;
+
+    background: #111;
+
+    color: #eee;
+
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,0.18);
+}
+
+.project-info {
+    margin-left: 12px;
+    flex: 1;
+}
+
+.project-info h2 {
+    color: #111;
+
+    font-size: 15px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+.project-info p {
+    margin-top: 4px;
+
+    color: #666;
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 1.1px;
+}
+
+.project-arrow {
+    font-size: 18px;
+    color: #222;
+
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-arrow {
+    transform: translate(3px, -3px);
+}
+
+
+/* =========================
+   PROJECT REVEAL
+========================= */
+
+.project-reveal {
+    max-height: 0;
+    opacity: 0;
+
+    overflow: hidden;
+
+    transition:
+        max-height 0.55s ease,
+        opacity 0.35s ease,
+        margin-top 0.4s ease;
+}
+
+.project-card.open {
+    min-height: 365px;
+}
+
+.project-card.open .project-reveal {
+    max-height: 270px;
+    opacity: 1;
+
+    margin-top: 22px;
+}
+
+.project-reveal-line {
+    width: 100%;
+    height: 1px;
+
+    margin-bottom: 17px;
+
+    background: rgba(0,0,0,0.12);
+}
+
+.project-reveal h3 {
+    color: #161616;
+
+    font-size: 17px;
+    font-weight: 900;
+
+    letter-spacing: -0.2px;
+
+    margin-bottom: 13px;
+}
+
+.project-reveal p {
+    margin-bottom: 11px;
+
+    color: #3c3c3c;
+
+    font-size: 10px;
+    line-height: 1.55;
+
+    font-weight: 600;
+}
+
+.project-tag {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 17px;
+
+    color: #666;
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 1.3px;
+}
+
+.project-line {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #111,
+            #777,
+            #111
+        );
+}
+
+
+/* =========================
+   QUOTE
+========================= */
 
 .quote {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: center;
+    gap: 10px;
 
-    margin: 34px 0 25px;
+    margin-top: 30px;
 
-    color: #777;
+    color: #555;
 
-    font-size: 10px;
-    font-weight: bold;
-    letter-spacing: 2.2px;
+    font-size: 7px;
+    font-weight: 700;
 
-    text-shadow:
-        0 0 14px rgba(150, 0, 0, .25);
-}
-
-.quote span {
-    flex: 1;
-
-    height: 1px;
-
-    background: #750000;
-
-    box-shadow:
-        0 0 12px rgba(170, 0, 0, .4);
-}
-
-/* FOOTER */
-
-footer {
-    color: #505050;
-
-    font-size: 9px;
-    font-weight: bold;
     letter-spacing: 2px;
 }
 
-/* AI */
+.quote span {
+    width: 24px;
+    height: 1px;
+
+    background: #333;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    margin-top: 22px;
+
+    color: #363636;
+
+    font-size: 7px;
+    letter-spacing: 1.5px;
+}
+
+
+/* =========================
+   AI
+========================= */
 
 .ai {
     position: fixed;
 
     right: 15px;
-    bottom: 12px;
+    bottom: 13px;
 
-    color: #650000;
+    color: #3f3f3f;
 
-    font-size: 8px;
+    font-size: 7px;
+    letter-spacing: 1px;
 }
 
-/* MOBILE */
 
-@media (max-width: 550px) {
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 520px) {
 
     .profile {
-        padding-top: 30px;
+        padding-top: 35px;
     }
 
     h1 {
-        font-size: 30px;
+        font-size: 26px;
     }
 
-    .links a,
-    .locked-button {
-        min-height: 72px;
+    .project-card.open {
+        min-height: 390px;
     }
+
+    .project-reveal p {
+        font-size: 9px;
+    }
+
+    .project-tag {
+        gap: 10px;
+        flex-direction: column;
+    }
+}
+.project-tag {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+
+    margin-top: 20px;
+
+    color: #555;
+
+    font-size: 9px;
+    font-weight: 900;
+
+    letter-spacing: 1.5px;
+}
+
+.project-tag span:first-child {
+    color: #222;
+    font-size: 10px;
+}
+
+.project-tag span:last-child {
+    color: #555;
+    font-size: 10px;
+    white-space: nowrap;
+}
+/* =========================
+   GLOW ROUGE — TIKTOK
+========================= */
+
+.tiktok-one::before,
+.tiktok-two::before {
+    content: "";
+
+    position: absolute;
+    width: 210px;
+    height: 210px;
+
+    left: var(--mouse-x, 50%);
+    top: var(--mouse-y, 50%);
+
+    transform: translate(-50%, -50%);
+
+    background: radial-gradient(
+        circle,
+        rgba(255, 0, 45, 0.28),
+        rgba(255, 0, 45, 0.10) 35%,
+        transparent 70%
+    );
+
+    opacity: 0;
+    transition: opacity 0.25s ease;
+
+    pointer-events: none;
+}
+
+.tiktok-one:hover::before,
+.tiktok-two:hover::before {
+    opacity: 1;
+}
+
+
+/* =========================
+   GLOW VIOLET — DISCORD
+========================= */
+
+.discord-button::before {
+    content: "";
+
+    position: absolute;
+    width: 210px;
+    height: 210px;
+
+    left: var(--mouse-x, 50%);
+    top: var(--mouse-y, 50%);
+
+    transform: translate(-50%, -50%);
+
+    background: radial-gradient(
+        circle,
+        rgba(145, 85, 255, 0.32),
+        rgba(125, 65, 255, 0.12) 35%,
+        transparent 70%
+    );
+
+    opacity: 0;
+    transition: opacity 0.25s ease;
+
+    pointer-events: none;
+}
+
+.discord-button:hover::before {
+    opacity: 1;
+}
+
+
+/* =========================
+   OUR PROJECT — AUCUN GLOW
+========================= */
+
+.project-card::before {
+    display: none !important;
+}
+
+
+/* =========================
+   LOCKED — AUCUN GLOW
+========================= */
+
+.locked-button::before {
+    display: none !important;
+}
+/* =========================
+   GLOW FINAL — PAR BOUTON
+========================= */
+
+/* Désactive tous les anciens glows */
+.links > a::before,
+.special-button::before,
+.project-card::before {
+    opacity: 0 !important;
+}
+
+/* 🔴 TIKTOK = ROUGE */
+.tiktok-one:hover::before,
+.tiktok-two:hover::before {
+    display: block !important;
+    opacity: 1 !important;
+
+    width: 210px;
+    height: 210px;
+
+    background: radial-gradient(
+        circle,
+        rgba(255, 0, 45, 0.30) 0%,
+        rgba(255, 0, 45, 0.12) 35%,
+        transparent 70%
+    );
+}
+
+/* 🟣 DISCORD = VIOLET */
+.discord-button:hover::before {
+    display: block !important;
+    opacity: 1 !important;
+
+    width: 210px;
+    height: 210px;
+
+    background: radial-gradient(
+        circle,
+        rgba(145, 70, 255, 0.32) 0%,
+        rgba(125, 55, 255, 0.12) 35%,
+        transparent 70%
+    );
+}
+
+/* ⚪ PROJECT = AUCUN GLOW */
+.project-card::before {
+    display: none !important;
+}
+
+/* 🔒 LOCKED = AUCUN GLOW */
+.locked-button::before {
+    display: none !important;
+}
+/* =========================
+   FIX GLOW — COULEUR STABLE
+========================= */
+
+.links > a::before,
+.special-button::before {
+    transition: opacity 0.2s ease !important;
+}
+
+/* 🔴 TIKTOK */
+.tiktok-one::before,
+.tiktok-two::before {
+    background: radial-gradient(
+        circle,
+        rgba(255, 0, 45, 0.30) 0%,
+        rgba(255, 0, 45, 0.12) 35%,
+        transparent 70%
+    ) !important;
+}
+
+/* 🟣 DISCORD */
+.discord-button::before {
+    background: radial-gradient(
+        circle,
+        rgba(145, 70, 255, 0.32) 0%,
+        rgba(125, 55, 255, 0.12) 35%,
+        transparent 70%
+    ) !important;
+}
+
+/* ⚪ PROJECT */
+.project-card::before {
+    display: none !important;
+}
+
+/* 🔒 LOCKED */
+.locked-button::before {
+    display: none !important;
+}
+.site-url a {
+    color: #777;
+    text-decoration: none;
+    font-size: 10px;
+    cursor: text;
+    user-select: text;
+}
+
+.site-url a:hover {
+    color: #aaa;
+}
+.member {
+    font-size: 10px;
+}
+
+.site-url {
+    font-size: 10px;
+}
+
+.description {
+    font-size: 10px;
+}
+
+.text {
+    font-size: 12px;
+}
+
+.text small {
+    font-size: 8px;
+}
+
+.project-top {
+    font-size: 8px;
+}
+
+.project-status {
+    font-size: 8px;
+}
+
+.project-info h2 {
+    font-size: 16px;
+}
+
+.project-info p {
+    font-size: 8px;
+}
+
+.quote {
+    font-size: 8px;
+}
+
+footer {
+    font-size: 8px;
+}
+/* REVZSCALED = MÊME STYLE ROUGE QUE MAVZSCALED */
+
+.tiktok-two {
+    border: 1px solid rgba(255, 30, 70, 0.25);
+
+    background:
+        linear-gradient(
+            110deg,
+            rgba(120, 0, 25, 0.42),
+            rgba(25, 5, 10, 0.92)
+        );
+
+    box-shadow:
+        0 10px 35px rgba(80, 0, 20, 0.12);
+}
+
+.tiktok-two .icon {
+    background: rgba(255, 0, 50, 0.12);
+    color: #ff3154;
+}
+
+.tiktok-two:hover {
+    border-color: rgba(255, 35, 70, 0.55);
+
+    box-shadow:
+        0 14px 40px rgba(120, 0, 30, 0.20);
 }
